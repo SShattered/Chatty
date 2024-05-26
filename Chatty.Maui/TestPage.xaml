@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chatty.Maui.TestPage"
+             Title="TestPage"
+             xmlns:converter="clr-namespace:Chatty.Maui.Converters">
+    <ContentPage.Resources>
+        <converter:SideConverter x:Key="SideConverter"/>
+    </ContentPage.Resources>
+    <Grid>
+        <CollectionView
+            ItemsSource="{Binding DataClasses}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border
+                            Grid.Column="{Binding ChatUser, Converter={StaticResource SideConverter}}"
+                            Background="Gray"
+                            StrokeShape="RoundRectangle 10,10,10,10"
+                            Margin="10">
+                            <Label 
+                                Text="{Binding Message}"
+                                Margin="10,10,10,10"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>  
+    </Grid>
+</ContentPage>
